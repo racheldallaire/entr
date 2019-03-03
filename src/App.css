@@ -1,0 +1,18 @@
+h1 {
+    color: #433261;
+    font-size: 20px;
+}
+
+h2 {
+    color: #4c4c4c;
+    font-size: 16px;
+}
+
+h3 {
+    color: #4b4a4c;
+    font-size: 14px;
+}
+
+li {
+    list-style-type: none;
+}

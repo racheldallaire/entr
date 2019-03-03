@@ -5,7 +5,8 @@ import './Header.css';
 class Header extends Component {
     render() {
         return (
-            <div>
+            <div className="header">
+                entr challenge
             </div>
         );
     }

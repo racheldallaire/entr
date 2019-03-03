@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import CompanyList from '../CompanyList/CompanyList';
+
 import './Dashboard.css';
-import { CompanyList } from './CompanyList';
 
 
 class Dashboard extends Component {
