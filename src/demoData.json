@@ -1,0 +1,27 @@
+{ 
+    "companies": {
+        "A" : {
+            "name": "Company A", 
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis lorem vel elementum pretium. Morbi nec nulla convallis, tempus elit et, malesuada est. Proin tempor ullamcorper arcu, et euismod lacus sodales vel. Aenean blandit pretium porta.", 
+            "users": ["1", "2", "3", "4", "5"]
+        },
+        "B" : {
+            "name": "Company B", 
+            "description": "Nunc eu aliquam nunc. Nam pulvinar convallis nulla, euismod laoreet dui malesuada id. Interdum et malesuada fames ac ante ipsum primis in faucibus.", 
+            "users": ["2", "5"]
+        },
+        "C" : {
+            "name": "Company C", 
+            "description": "Sed nibh dolor, tincidunt id libero id, aliquet eleifend massa. Sed et dapibus ipsum. Nam interdum ultrices gravida.", 
+            "users": []
+        }
+    },
+    "users": {
+        "1": "Matthew",
+        "2": "Esther",
+        "3": "Mark",
+        "4": "Anna",
+        "5": "Luke"
+    },
+    "companyOrder": ["A", "B", "C"]
+}

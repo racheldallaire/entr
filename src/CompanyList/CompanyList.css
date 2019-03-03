@@ -1,0 +1,17 @@
+.companyList {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.list {
+    margin-bottom: 50px;
+}
+
+.companyNameInput {
+    margin-bottom: 5px;
+    width: 95%;
+}
+
+.companyDescInput {
+    width: 95%;
+}
