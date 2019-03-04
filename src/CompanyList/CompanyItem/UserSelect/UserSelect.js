@@ -27,7 +27,7 @@ class UserSelect extends Component {
     handleDelete = (userId) => () => {
         let newSelectedUsers = [...this.props.selectedUsers];
         newSelectedUsers.splice(this.props.selectedUsers.indexOf(userId), 1);
-        
+
         this.props.setSelectedUsers(newSelectedUsers);
     }
     
@@ -52,7 +52,10 @@ class UserSelect extends Component {
                 >
                     {Object.keys(this.props.users).map((userId) => (
                         <MenuItem key={userId} value={userId}>
-                            <Checkbox checked={this.props.selectedUsers.indexOf(userId) > -1} />
+                            <Checkbox 
+                                checked={this.props.selectedUsers.indexOf(userId) > -1}
+                                style={{color: "#7c60e3"}}
+                            />
                             <ListItemText primary={this.props.users[userId]} />
                         </MenuItem>
                     ))}

@@ -16,14 +16,10 @@
     width: 95%;
 }
 
-.selectUsers {
-    width: 100%;
+.cancelEntry {
+    margin-left: 20px!important;
 }
 
-.deleteCompany {
-    margin-top: 15px;
-}
-
-.companyListItem {
-    width: 100%;
+.buttonContainer {
+    margin-bottom: 20px!important;
 }
