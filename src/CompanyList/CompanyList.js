@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { Delete, Save } from '@material-ui/icons';
+import { Delete, ExpandMore, Save } from '@material-ui/icons';
 import {
+    Avatar,
     Button,
+    ExpansionPanel,
+    ExpansionPanelDetails,
+    ExpansionPanelSummary,
+    IconButton,
     List, 
     ListItem, 
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
     TextField,
-    Avatar,
-    IconButton
 } from '@material-ui/core';
 
 import { companies, users, companyOrder } from '../demoData.json';
+import UserSelect from '../UserSelect/UserSelect.js';
 import './CompanyList.css';
 
 
@@ -30,7 +34,7 @@ class CompanyList extends Component {
     }
 
     addCompany = () => {
-        const newId = 'c' + '-' + Math.random().toString(36).substr(2, 9) + '-' + String(Date.now()).substr(4);     
+        const newId = 'c-' + Math.random().toString(36).substr(2, 9) + '-' + String(Date.now()).substr(4);     
         this.setState({
             addingCompany: false,
             companies: {
@@ -73,11 +77,11 @@ class CompanyList extends Component {
                         variant="outlined"
                     />   
                 </ListItemText>
-                    <ListItemSecondaryAction>
-                        <IconButton aria-label="Save" onClick={this.addCompany}>
-                            <Save />
-                        </IconButton>
-                    </ListItemSecondaryAction>
+                <ListItemSecondaryAction>
+                    <IconButton aria-label="Save" onClick={this.addCompany}>
+                        <Save />
+                    </IconButton>
+                </ListItemSecondaryAction>
             </ListItem>
         )
     }
@@ -85,25 +89,32 @@ class CompanyList extends Component {
     generateListItem = (company, index, avatar, userCount) => {
         return (
             <ListItem key={index}>
-                <ListItemAvatar>
-                    <Avatar>
-                        {avatar}
-                    </Avatar>
-                </ListItemAvatar>  
-                <ListItemText
-                    primary={company.name}
-                    secondary={company.description}
-                />
-                {
-                    userCount === 0 ? <ListItemSecondaryAction>
-                        <IconButton aria-label="Delete">
-                            <Delete />
-                        </IconButton>
-                    </ListItemSecondaryAction> : ''
-                }
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+                        <ListItemAvatar>
+                            <Avatar>
+                                {avatar}
+                            </Avatar>
+                        </ListItemAvatar>  
+                        <ListItemText
+                            primary={company.name}
+                            secondary={company.description}
+                        />
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <UserSelect users={this.state.users} initialUsers={company.users} />
+                        { userCount === 0 ? <IconButton className="deleteCompany" variant="contained" color="secondary"><Delete /></IconButton> : '' }
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
             </ListItem>
         )
     }
+
+    handleChange = name => (event, { newValue }) => {
+        this.setState({
+            [name]: newValue,
+        });
+    };
 
     renderInput = () => {
         if (this.state.addingCompany) {

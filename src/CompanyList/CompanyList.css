@@ -4,7 +4,7 @@
 }
 
 .list {
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .companyNameInput {
@@ -14,4 +14,12 @@
 
 .companyDescInput {
     width: 95%;
+}
+
+.selectUsers {
+    width: 100%;
+}
+
+.deleteCompany {
+    margin-top: 15px;
 }
