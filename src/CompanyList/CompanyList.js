@@ -89,7 +89,7 @@ class CompanyList extends Component {
     generateListItem = (company, index, avatar, userCount) => {
         return (
             <ListItem key={index}>
-                <ExpansionPanel>
+                <ExpansionPanel className="companyListItem">
                     <ExpansionPanelSummary expandIcon={<ExpandMore />}>
                         <ListItemAvatar>
                             <Avatar>

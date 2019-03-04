@@ -30,13 +30,16 @@ class UserSelect extends Component {
     }
 
     handleDelete = (name) => () => {
-        console.log('deleting user:  ', name)
+        const i = this.state.selectedUsers.indexOf(name);
+        let newSelectedUsers = [...this.state.selectedUsers];
+        newSelectedUsers.splice(i, 1);
+        this.setState({selectedUsers: newSelectedUsers});
     }
     
     render() {
         return (
             <FormControl className="selectUsers">
-                <InputLabel htmlFor="select-multiple-checkbox">Users</InputLabel>
+                <InputLabel htmlFor="select-multiple-checkbox">Assign Users</InputLabel>
                 <Select
                     multiple
                     value={this.state.selectedUsers}
