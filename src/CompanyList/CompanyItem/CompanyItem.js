@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
     Avatar,
+    Button,
     ExpansionPanel,
     ExpansionPanelDetails,
     ExpansionPanelSummary,
-    IconButton,
     ListItem, 
     ListItemAvatar,
-    ListItemText,
+    ListItemText
 } from '@material-ui/core';
-import { Delete, ExpandMore } from '@material-ui/icons';
+import { AccountCircle, Delete, ExpandMore } from '@material-ui/icons';
 
 import UserSelect from './UserSelect/UserSelect';
 import './CompanyItem.css';
@@ -43,10 +43,14 @@ class CompanyItem extends Component {
                 <ExpansionPanel className="companyListItem">
                     <ExpansionPanelSummary expandIcon={<ExpandMore />}>
                         <ListItemAvatar>
-                            <Avatar>
-                                {this.props.name[0]}
-                            </Avatar>
-                        </ListItemAvatar>  
+                            <div>
+                                <Avatar>
+                                    {this.props.name[0].toUpperCase()}
+                                </Avatar>
+                                <AccountCircle className="smallIcon"/>
+                                <span className="userCount">{this.state.selectedUsers.length}</span>
+                            </div>
+                        </ListItemAvatar>
                         <ListItemText
                             primary={this.props.name}
                             secondary={this.props.description}
@@ -59,15 +63,17 @@ class CompanyItem extends Component {
                             selectedUsers={this.state.selectedUsers}
                             setSelectedUsers={this.setSelectedUsers}
                         />
+                        <p/>
                         { this.state.selectedUsers.length === 0 ? 
-                            <IconButton 
+                            <Button 
+                                aria-label="Delete"
                                 className="deleteCompany"
                                 onClick={this.props.deleteCompany} 
-                                variant="contained" 
-                                color="secondary">
-                                <Delete />
-                            </IconButton> 
-                            : '' 
+                                color="secondary" 
+                            >
+                                <Delete /> Remove Company
+                            </Button>
+                            : ''
                         }
                     </ExpansionPanelDetails>
                 </ExpansionPanel>

@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import { Delete, ExpandMore, Save } from '@material-ui/icons';
+import { Save } from '@material-ui/icons';
 import {
     Avatar,
     Button,
-    ExpansionPanel,
-    ExpansionPanelDetails,
-    ExpansionPanelSummary,
-    IconButton,
     List, 
     ListItem, 
     ListItemAvatar,
-    ListItemSecondaryAction,
     ListItemText,
     TextField,
 } from '@material-ui/core';
 
 import { companies, users, companyOrder } from '../demoData.json';
 import CompanyItem from './CompanyItem/CompanyItem';
-import UserSelect from './CompanyItem/UserSelect/UserSelect';
 import './CompanyList.css';
 
 
@@ -38,7 +32,7 @@ class CompanyList extends Component {
         this.setState({
             addingCompany: false,
             companies: {
-                ...companies, 
+                ...this.state.companies, 
                 [newId]: {
                     name: this.state.companyNameInput,
                     description: this.state.companyDescInput,
@@ -57,7 +51,7 @@ class CompanyList extends Component {
 
         let newCompanyOrder = [...this.state.companyOrder];
         newCompanyOrder.splice(newCompanyOrder.indexOf(companyId), 1);
-        
+
         this.setState({companies: newCompanies, companyOrder: newCompanyOrder});
     }
 
@@ -66,7 +60,10 @@ class CompanyList extends Component {
             <ListItem key={index}>
                 <ListItemAvatar>
                     <Avatar>
-                        {this.state.companyNameInput[0]}
+                        { this.state.companyNameInput[0] !== undefined ?
+                            this.state.companyNameInput[0].toUpperCase() :
+                            ''
+                        }
                     </Avatar>
                 </ListItemAvatar>  
                 <ListItemText>
@@ -87,11 +84,6 @@ class CompanyList extends Component {
                         variant="outlined"
                     />   
                 </ListItemText>
-                <ListItemSecondaryAction>
-                    <IconButton aria-label="Save" onClick={this.addCompany}>
-                        <Save />
-                    </IconButton>
-                </ListItemSecondaryAction>
             </ListItem>
         )
     }
@@ -143,9 +135,43 @@ class CompanyList extends Component {
                     {this.renderList()}
                     {this.renderInput()}
                 </div>
-                <Button className="addCompany" onClick={this.toggleCompanyInput} variant="contained" color="primary">
+                {this.state.addingCompany ? 
+                <div className="buttonContainer">
+                    {this.state.companyNameInput === '' ? 
+                        <Button 
+                            disabled 
+                            variant="contained"
+                        >
+                            <Save /> Save
+                        </Button> : 
+                        <Button 
+                            aria-label="Save" 
+                            onClick={this.addCompany}
+                            variant="contained"
+                            color="primary"
+                        >
+                            <Save /> Save
+                        </Button> 
+                    }
+                    <Button 
+                        aria-label="Cancel" 
+                        className="cancelEntry"
+                        onClick={()=>{this.setState({addingCompany: false})}}
+                        variant="outlined"
+                        color="secondary"
+                    >
+                        Cancel
+                    </Button>
+                </div> :
+                <Button 
+                    className="addCompany" 
+                    onClick={this.toggleCompanyInput} 
+                    variant="contained" 
+                    color="primary"
+                >
                     New Company
                 </Button>
+                }
             </div>
         );
     }
