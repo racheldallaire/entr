@@ -16,7 +16,8 @@ import {
 } from '@material-ui/core';
 
 import { companies, users, companyOrder } from '../demoData.json';
-import UserSelect from '../UserSelect/UserSelect.js';
+import CompanyItem from './CompanyItem/CompanyItem';
+import UserSelect from './CompanyItem/UserSelect/UserSelect';
 import './CompanyList.css';
 
 
@@ -28,8 +29,7 @@ class CompanyList extends Component {
             companies: companies,
             companyNameInput: '',
             companyDescInput: '',
-            companyOrder: companyOrder,
-            users: users
+            companyOrder: companyOrder
         }
     }
 
@@ -49,6 +49,16 @@ class CompanyList extends Component {
             companyDescInput: '',
             companyOrder: [...this.state.companyOrder, newId]
         });
+    }
+
+    onDeleteCompany = (companyId) => () => {
+        let newCompanies = {...this.state.companies};
+        delete newCompanies[companyId];
+
+        let newCompanyOrder = [...this.state.companyOrder];
+        newCompanyOrder.splice(newCompanyOrder.indexOf(companyId), 1);
+        
+        this.setState({companies: newCompanies, companyOrder: newCompanyOrder});
     }
 
     generateInput = (index) => {
@@ -86,30 +96,6 @@ class CompanyList extends Component {
         )
     }
 
-    generateListItem = (company, index, avatar, userCount) => {
-        return (
-            <ListItem key={index}>
-                <ExpansionPanel className="companyListItem">
-                    <ExpansionPanelSummary expandIcon={<ExpandMore />}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                {avatar}
-                            </Avatar>
-                        </ListItemAvatar>  
-                        <ListItemText
-                            primary={company.name}
-                            secondary={company.description}
-                        />
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-                        <UserSelect users={this.state.users} initialUsers={company.users} />
-                        { userCount === 0 ? <IconButton className="deleteCompany" variant="contained" color="secondary"><Delete /></IconButton> : '' }
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-            </ListItem>
-        )
-    }
-
     handleChange = name => (event, { newValue }) => {
         this.setState({
             [name]: newValue,
@@ -127,7 +113,15 @@ class CompanyList extends Component {
         this.state.companyOrder.forEach((companyId) => {
             const company = this.state.companies[companyId];
             listItems.push(
-                this.generateListItem(company, companyId, company.name[0], 0)
+                <CompanyItem
+                    key={companyId} 
+                    id={companyId}
+                    name={company.name}
+                    description={company.description}
+                    users={users}
+                    initialSelectedUsers={company.users}
+                    deleteCompany={this.onDeleteCompany(companyId)} 
+                />
             );
         });
 
