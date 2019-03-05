@@ -1,0 +1,25 @@
+.companyList {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.list {
+    margin-bottom: 25px;
+}
+
+.companyNameInput {
+    margin-bottom: 5px;
+    width: 95%;
+}
+
+.companyDescInput {
+    width: 95%;
+}
+
+.cancelEntry {
+    margin-left: 20px!important;
+}
+
+.buttonContainer {
+    margin-bottom: 20px!important;
+}
