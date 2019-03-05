@@ -8,7 +8,8 @@ import {
     ExpansionPanelSummary,
     ListItem, 
     ListItemAvatar,
-    ListItemText
+    ListItemText,
+    Typography
 } from '@material-ui/core';
 import { AccountCircle, Delete, ExpandMore } from '@material-ui/icons';
 
@@ -38,6 +39,8 @@ class CompanyItem extends Component {
     }
 
     render() {
+        // Render individual companyListItem using the props passed down from the Parent component,
+        // CompanyList. If a company has no users, the button to delete the company is not displayed.
         return (
             <ListItem>
                 <ExpansionPanel className="companyListItem">
@@ -52,7 +55,11 @@ class CompanyItem extends Component {
                             </div>
                         </ListItemAvatar>
                         <ListItemText
-                            primary={this.props.name}
+                            primary={
+                                <Typography variant="h6" style={{ color: '#7c60e3' }}>
+                                    {this.props.name}
+                                </Typography>
+                            }
                             secondary={this.props.description}
                         />
                     </ExpansionPanelSummary>
@@ -69,9 +76,10 @@ class CompanyItem extends Component {
                                 aria-label="Delete"
                                 className="deleteCompany"
                                 onClick={this.props.deleteCompany} 
-                                color="secondary" 
+                                color="secondary"
+                                variant="contained" 
                             >
-                                <Delete /> Remove Company
+                                <Delete /> Delete 
                             </Button>
                             : ''
                         }

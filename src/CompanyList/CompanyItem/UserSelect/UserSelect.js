@@ -25,6 +25,8 @@ class UserSelect extends Component {
     }
 
     handleDelete = (userId) => () => {
+        // Similar to onDeleteCompany() in the CompanyList component, we make a copy of the
+        // selectedUsers array in the props, before deleting it and then updating the props
         let newSelectedUsers = [...this.props.selectedUsers];
         newSelectedUsers.splice(this.props.selectedUsers.indexOf(userId), 1);
 
