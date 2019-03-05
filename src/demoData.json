@@ -1,27 +1,28 @@
 { 
     "companies": {
         "A" : {
-            "name": "Company A", 
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis lorem vel elementum pretium. Morbi nec nulla convallis, tempus elit et, malesuada est. Proin tempor ullamcorper arcu, et euismod lacus sodales vel. Aenean blandit pretium porta.", 
-            "users": ["1", "2", "3", "4", "5"]
+            "name": "Sweetums", 
+            "description": "Sweetums is Pawnee's leading sweet treat manufacturer and has been for over 80 years. Its slogan is: 'If you can't beat 'em, Sweetums.' The pollution from the factory results in beautiful sunsets.", 
+            "users": []
         },
         "B" : {
-            "name": "Company B", 
-            "description": "Nunc eu aliquam nunc. Nam pulvinar convallis nulla, euismod laoreet dui malesuada id. Interdum et malesuada fames ac ante ipsum primis in faucibus.", 
-            "users": ["2", "5"]
+            "name": "Gryzzl", 
+            "description": "Gryzzl is an internet company that is headquartered in Pawnee. Gryzzl delivers 'Gryzzlboxes' to Pawnee residents full of their favorite things via drone. This leads to the revelation that Gryzzl has been using data mining to learn the wishes of Pawnee residents.", 
+            "users": ["4", "5"]
         },
         "C" : {
-            "name": "Company C", 
-            "description": "Sed nibh dolor, tincidunt id libero id, aliquet eleifend massa. Sed et dapibus ipsum. Nam interdum ultrices gravida.", 
-            "users": []
+            "name": "JJ's Diner", 
+            "description": "JJ's Diner has been a staple for the citizens of Pawnee since its opening in 1976. It is owned by JJ Lipscomb and is located at 122 Sunderland, between TrampStamp Tattoos and the ChloroTech Cadmium Refinery. The speciality at JJ's are its world-famous waffles.", 
+            "users": ["1", "2", "3"]
         }
     },
     "users": {
-        "1": "Matthew",
-        "2": "Esther",
-        "3": "Mark",
-        "4": "Anna",
-        "5": "Luke"
+        "1": "Leslie Knope",
+        "2": "Ron Swanson",
+        "3": "April Ludgate",
+        "4": "Donna Meagle",
+        "5": "Tom Haverford",
+        "6": "Andy Dwyer"
     },
     "companyOrder": ["A", "B", "C"]
 }

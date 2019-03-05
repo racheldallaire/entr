@@ -28,7 +28,10 @@ class CompanyList extends Component {
     }
 
     addCompany = () => {
-        const newId = 'c-' + Math.random().toString(36).substr(2, 9) + '-' + String(Date.now()).substr(4);     
+        // Generate random alphanumerical string to use as a company ID
+        const newId = 'c-' + Math.random().toString(36).substr(2, 9) + '-' + String(Date.now()).substr(4); 
+        
+        // Set the state using the old companies plus the one just inputted by the user
         this.setState({
             addingCompany: false,
             companies: {
@@ -46,6 +49,8 @@ class CompanyList extends Component {
     }
 
     onDeleteCompany = (companyId) => () => {
+        // We can't mutate state, so we clone the companies and companyOrder before deleting 
+        // the company that was removed, then update the state
         let newCompanies = {...this.state.companies};
         delete newCompanies[companyId];
 
@@ -56,6 +61,7 @@ class CompanyList extends Component {
     }
 
     generateInput = (index) => {
+        // This function returns the input fields that will be rendered by renderInput()
         return (
             <ListItem key={index}>
                 <ListItemAvatar>
@@ -88,13 +94,9 @@ class CompanyList extends Component {
         )
     }
 
-    handleChange = name => (event, { newValue }) => {
-        this.setState({
-            [name]: newValue,
-        });
-    };
-
     renderInput = () => {
+        // We need to pass in a unique key into generateInput(), but since it is only used once,
+        // it doesn't really matter what we pass in. I used 'a' here.
         if (this.state.addingCompany) {
             return this.generateInput('a')
         }
@@ -117,6 +119,7 @@ class CompanyList extends Component {
             );
         });
 
+        // Each listItem element is a child of <List>
         return (
             <List>
                 {listItems}
@@ -128,7 +131,17 @@ class CompanyList extends Component {
         this.setState({addingCompany: true});
     }
 
+    cancelCompanyInput = () => {
+        this.setState({
+            addingCompany: false,
+            companyNameInput: '',
+            companyDescInput: '',
+        })
+    }
+
     render() {
+        // In the render, we make the 'Save' button disabled if the company name field is blank, and 
+        // don't display the 'New Company' button while addingCompany state is true.
         return (
             <div className="companyList">
                 <div className="list">
@@ -156,7 +169,7 @@ class CompanyList extends Component {
                     <Button 
                         aria-label="Cancel" 
                         className="cancelEntry"
-                        onClick={()=>{this.setState({addingCompany: false})}}
+                        onClick={this.cancelCompanyInput}
                         variant="outlined"
                         color="secondary"
                     >
