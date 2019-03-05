@@ -69,7 +69,7 @@ class CompanyList extends Component {
                  <ExpansionPanel className="companyListItem">
                     <ExpansionPanelSummary>
                         <ListItemAvatar>
-                            <Avatar>
+                            <Avatar style={{marginTop: "30px"}}>
                                 { this.state.companyNameInput[0] !== undefined ?
                                     this.state.companyNameInput[0].toUpperCase() :
                                     ''
