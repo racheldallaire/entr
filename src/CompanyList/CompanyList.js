@@ -3,6 +3,8 @@ import { Save } from '@material-ui/icons';
 import {
     Avatar,
     Button,
+    ExpansionPanel,
+    ExpansionPanelSummary,
     List, 
     ListItem, 
     ListItemAvatar,
@@ -63,33 +65,37 @@ class CompanyList extends Component {
     generateInput = (index) => {
         // This function returns the input fields that will be rendered by renderInput()
         return (
-            <ListItem key={index}>
-                <ListItemAvatar>
-                    <Avatar>
-                        { this.state.companyNameInput[0] !== undefined ?
-                            this.state.companyNameInput[0].toUpperCase() :
-                            ''
-                        }
-                    </Avatar>
-                </ListItemAvatar>  
-                <ListItemText>
-                    <TextField
-                        id="standard-uncontrolled"
-                        label="Company Name"
-                        className="companyNameInput"
-                        onChange={(e) => {this.setState({companyNameInput: e.target.value})}}
-                        margin="normal"
-                    />
-                    <br/>
-                    <TextField
-                        id="outlined-name"
-                        label="Description"
-                        className="companyDescInput"
-                        onChange={(e) => {this.setState({companyDescInput: e.target.value})}}
-                        margin="normal"
-                        variant="outlined"
-                    />   
-                </ListItemText>
+            <ListItem key={index} className="">
+                 <ExpansionPanel className="companyListItem">
+                    <ExpansionPanelSummary>
+                        <ListItemAvatar>
+                            <Avatar>
+                                { this.state.companyNameInput[0] !== undefined ?
+                                    this.state.companyNameInput[0].toUpperCase() :
+                                    ''
+                                }
+                            </Avatar>
+                        </ListItemAvatar>  
+                        <ListItemText>
+                            <TextField
+                                id="standard-uncontrolled"
+                                label="Company Name"
+                                className="companyNameInput"
+                                onChange={(e) => {this.setState({companyNameInput: e.target.value})}}
+                                margin="normal"
+                            />
+                            <br/>
+                            <TextField
+                                id="outlined-name"
+                                label="Description"
+                                className="companyDescInput"
+                                onChange={(e) => {this.setState({companyDescInput: e.target.value})}}
+                                margin="normal"
+                                variant="outlined"
+                            />   
+                        </ListItemText>
+                    </ExpansionPanelSummary>
+                </ExpansionPanel>
             </ListItem>
         )
     }
